@@ -7,18 +7,29 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class AssetsLoad : MonoBehaviour
 {
-    public string key;
-    AsyncOperationHandle<GameObject> opHandle;
+    public List<string> keys = new List<string>();
+    AsyncOperationHandle<IList<GameObject>> opHandle;
 
     public IEnumerator Start()
     {
-        opHandle = Addressables.LoadAssetAsync<GameObject>(key);
+        opHandle = Addressables.LoadAssetsAsync<GameObject>
+            (keys,
+                obj =>
+                {
+                    //Gets called for every loaded asset
+                    Debug.Log(obj.name);
+                },
+                Addressables.MergeMode.Union
+            );
+
         yield return opHandle;
 
         if (opHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            GameObject obj = opHandle.Result;
-            Instantiate(obj, transform);
+            foreach (var obj in opHandle.Result)
+            {
+                Instantiate(obj, transform);
+            }
         }
     }
 
