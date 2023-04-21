@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,6 +12,14 @@ public class AssetsLoad : MonoBehaviour
     AsyncOperationHandle<IList<GameObject>> opHandle;
 
     public string Labels;
+
+    public List<Polyomino> Polyominos;
+
+    public bool AssetLoaded = false;
+
+    public int level = 1;
+
+    public Transform PolyominoRoot;
 
     public IEnumerator Start()
     {
@@ -29,10 +38,18 @@ public class AssetsLoad : MonoBehaviour
 
         if (opHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            foreach (var obj in opHandle.Result)
+            var poly = Instantiate(opHandle.Result[level - 1], transform);
+            foreach (var polyomino in poly.GetComponentsInChildren<Polyomino>())
             {
-                Instantiate(obj, transform);
+                Polyominos.Add(polyomino);
             }
+            AssetLoaded = true;
+        }
+
+        // ここでポリオミノをランダムに割り振る
+        foreach (var poly in Polyominos)
+        {
+            Instantiate(poly, PolyominoRoot);
         }
     }
 

@@ -26,17 +26,16 @@ public class Polyomino : MonoBehaviour
         { 0, 0, 0 }
     };
 
-    private void Start()
+    private void Awake()
     {
         SetPolyominoForm();
-        Debug.Log(PolyominoForm);
     }
 
     private void SetPolyominoForm()
     {
         foreach (var mino in this.transform.GetComponentsInChildren<SpriteRenderer>())
         {   
-            PolyominoForm[(int)mino.transform.localPosition.y+1, (int)mino.transform.localPosition.x+1] = 1;
+            PolyominoForm[(int)mino.transform.localPosition.x+1,(int)mino.transform.localPosition.y + 1] = 1;
         }
     }
 }
