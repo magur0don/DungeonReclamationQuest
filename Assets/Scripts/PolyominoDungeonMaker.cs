@@ -17,5 +17,12 @@ public class PolyominoDungeonMaker : MonoBehaviour
             // ダンジョンの穴用の設定を行う
             dungeonHole.sprite = DungeonHoleSprite;
         }
+        
+        foreach (var dungeonPolyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
+        {
+            dungeonPolyomino.GetPolyominoCollider.isTrigger = true;
+            dungeonPolyomino.GetPolyominoRigidbody2D.isKinematic = true ;
+            dungeonPolyomino.IsDungeonPolyomino = true;
+        }
     }
 }

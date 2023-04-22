@@ -12,10 +12,18 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
     public void UserControlDungeonLidMake()
     {
         var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
-        foreach (var userControlPolyomino in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
+        
+        // SpriteÇÃê›íË
+        foreach (var userControlPolyominoRenderer in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {
-            userControlPolyomino.sprite = DungeonLidSprite;
-            userControlPolyomino.sortingOrder = 1;
+            userControlPolyominoRenderer.sprite = DungeonLidSprite;
+            userControlPolyominoRenderer.sortingOrder = 1;
+        }
+
+        foreach (var userControlPolyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
+        {
+            var colliderSize = userControlPolyomino.GetPolyominoCollider.size;
+            userControlPolyomino.GetPolyominoCollider.size = colliderSize * 0.9f;
         }
     }
 }
