@@ -106,10 +106,13 @@ public class Polyomino : MonoBehaviour
             var poly = collision.GetComponent<Polyomino>();
             if (!poly.IsDragging && !poly.IsDungeonPolyomino)
             {
-                poly.transform.position = this.transform.localPosition;
+              
+                bool isFullyInside = this.polyominoCollider.bounds.Contains(poly.polyominoCollider.bounds.min) &&
+                       this.polyominoCollider.bounds.Contains(poly.polyominoCollider.bounds.max);
                 // ‚¿‚á‚ñ‚Æ–„‚Ü‚Á‚Ä‚¢‚é‚©‚ðŠm”F‚·‚é
-                if (poly.PolyominoType == this.PolyominoType)
+                if (isFullyInside &&poly.PolyominoType == this.PolyominoType)
                 {
+                    poly.transform.position = this.transform.localPosition;
                     IsBuried = true;
                 }
             }

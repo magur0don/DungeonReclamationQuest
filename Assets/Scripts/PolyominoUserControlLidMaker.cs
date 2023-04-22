@@ -23,8 +23,7 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
 
         foreach (var userControlPolyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
         {
-            var colliderSize = userControlPolyomino.GetPolyominoCollider.size;
-            userControlPolyomino.GetPolyominoCollider.size = colliderSize * 0.9f;
+            userControlPolyomino.GetPolyominoCollider.size  *= 0.6f;
         }
     }
 }
