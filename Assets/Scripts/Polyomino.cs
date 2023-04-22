@@ -26,6 +26,9 @@ public class Polyomino : MonoBehaviour
         { 0, 0, 0 }
     };
 
+
+    private BoxCollider2D polyominoCollider => GetComponent<BoxCollider2D>();
+
     private void Awake()
     {
         SetPolyominoForm();
@@ -34,8 +37,23 @@ public class Polyomino : MonoBehaviour
     private void SetPolyominoForm()
     {
         foreach (var mino in this.transform.GetComponentsInChildren<SpriteRenderer>())
-        {   
-            PolyominoForm[(int)mino.transform.localPosition.x+1,(int)mino.transform.localPosition.y + 1] = 1;
+        {
+            PolyominoForm[(int)mino.transform.localPosition.x + 1, (int)mino.transform.localPosition.y + 1] = 1;
         }
+    }
+
+    private Vector3 offset; // ドラッグ中のオフセット値
+
+    void OnMouseDown()
+    {
+        // マウスがクリックされた時に実行される処理
+        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    void OnMouseDrag()
+    {
+        // マウスがドラッグされている間に実行される処理
+        Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
     }
 }

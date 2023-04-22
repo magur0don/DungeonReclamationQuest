@@ -15,6 +15,7 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
         foreach (var userControlPolyomino in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {
             userControlPolyomino.sprite = DungeonLidSprite;
+            userControlPolyomino.sortingOrder = 1;
         }
     }
 }
