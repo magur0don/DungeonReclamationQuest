@@ -18,12 +18,9 @@ public class Dungeons : MonoBehaviour
     }
     private void Update()
     {
-        if (!IsBulied)
-        {
-            // polyominos全部がtrueだったら
-            IsBulied = polyominos.All(polyomino => polyomino.IsBuried);
-        }
-        else
+        // polyominos全部がtrueだったら
+        IsBulied = polyominos.All(polyomino => polyomino.IsBuried);
+        if (IsBulied)
         {
             Debug.Log("クリア");
         }
