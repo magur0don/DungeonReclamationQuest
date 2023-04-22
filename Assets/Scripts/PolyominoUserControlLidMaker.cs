@@ -12,7 +12,8 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
     public void UserControlDungeonLidMake()
     {
         var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
-        
+
+        polyominoDungeons.GetComponent<Dungeons>().enabled = false;
         // SpriteÇÃê›íË
         foreach (var userControlPolyominoRenderer in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {

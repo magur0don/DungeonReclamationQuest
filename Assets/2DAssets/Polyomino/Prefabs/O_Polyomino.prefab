@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDungeonPolyomino: 0
   IsDragging: 0
+  IsBuried: 0
+  PolyominoType: 4
 --- !u!61 &7571010489232514635
 BoxCollider2D:
   m_ObjectHideFlags: 0

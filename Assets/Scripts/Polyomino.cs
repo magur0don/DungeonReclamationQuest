@@ -33,6 +33,19 @@ public class Polyomino : MonoBehaviour
 
     public bool IsDragging = false;
 
+    public bool IsBuried = false;
+
+    public enum PolyominoTypes
+    {
+        Invalid,
+        A,
+        W,
+        C,
+        O
+    }
+
+    public PolyominoTypes PolyominoType = PolyominoTypes.Invalid;
+
     private BoxCollider2D polyominoCollider => GetComponent<BoxCollider2D>();
 
     public BoxCollider2D GetPolyominoCollider
@@ -93,8 +106,23 @@ public class Polyomino : MonoBehaviour
             var poly = collision.GetComponent<Polyomino>();
             if (!poly.IsDragging && !poly.IsDungeonPolyomino)
             {
-                Debug.Log("Ž„‚É‚È‚é");
                 poly.transform.position = this.transform.localPosition;
+                // ‚¿‚á‚ñ‚Æ–„‚Ü‚Á‚Ä‚¢‚é‚©‚ðŠm”F‚·‚é
+                if (poly.PolyominoType == this.PolyominoType)
+                {
+                    IsBuried = true;
+                }
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Polyomino>())
+        {
+            var poly = collision.GetComponent<Polyomino>();
+            if (!poly.IsDungeonPolyomino)
+            {
+                IsBuried = false;
             }
         }
     }
