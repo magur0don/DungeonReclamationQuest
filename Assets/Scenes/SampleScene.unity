@@ -132,8 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310974524}
+  - component: {fileID: 310974525}
   m_Layer: 0
-  m_Name: PlayerPolyominoRoot
+  m_Name: UserControlPolyominoRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +155,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310974525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310974523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f110641e1cf0fc64b9bf0dcecaa71185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssetsLoad: {fileID: 822185896}
+  DungeonLidSprite: {fileID: 21300000, guid: 9af611c6d8b75404ba1ada375856286a, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +409,7 @@ GameObject:
   - component: {fileID: 822185897}
   - component: {fileID: 822185896}
   m_Layer: 0
-  m_Name: DungeonMake
+  m_Name: AssetsLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,11 +430,8 @@ MonoBehaviour:
   keys: []
   Labels: Dungeons
   Polyominos: []
+  LoadedDungeons: []
   AssetLoaded: 0
-  level: 1
-  PolyominoRoot: {fileID: 310974524}
-  DungeonHoleSprite: {fileID: 21300000, guid: 4314f9eb02c0b76469061f95ce0f12e7, type: 3}
-  DungeonLidSprite: {fileID: 21300000, guid: 9af611c6d8b75404ba1ada375856286a, type: 3}
 --- !u!4 &822185897
 Transform:
   m_ObjectHideFlags: 0
@@ -434,4 +446,98 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1101423115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101423117}
+  - component: {fileID: 1101423118}
+  m_Layer: 0
+  m_Name: DungeonMake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1101423117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101423115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1101423118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101423115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30ad1415fb34e046889c50de8b001bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssetsLoad: {fileID: 822185896}
+  DungeonHoleSprite: {fileID: 21300000, guid: 4314f9eb02c0b76469061f95ce0f12e7, type: 3}
+--- !u!1 &1715856290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1715856292}
+  - component: {fileID: 1715856291}
+  m_Layer: 0
+  m_Name: MainGameSceneStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1715856291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715856290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5defec92f2b8645853f13bfabe8133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DungeonMaker: {fileID: 1101423118}
+  UserControlLidMaker: {fileID: 310974525}
+  AssetsLoad: {fileID: 822185896}
+  GameSceneStates: 0
+--- !u!4 &1715856292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715856290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
