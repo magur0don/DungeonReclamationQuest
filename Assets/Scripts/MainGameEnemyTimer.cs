@@ -10,10 +10,5 @@ public class MainGameEnemyTimer : MonoBehaviour
     void Update()
     {
         AttackTime -= Time.deltaTime;
-
-        if (AttackTime < 0f)
-        {
-            AttackTime = 3.0f;
-        }
     }
 }
