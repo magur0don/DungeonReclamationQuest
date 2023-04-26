@@ -11,9 +11,14 @@ public class MainGameEnemy : MonoBehaviour
     private MainGameEnemyTimer mainGameEnemyTimer => GetComponent<MainGameEnemyTimer>();
     private MainGameEnemyParameterManager mainGameEnemyParameterManager => GetComponent<MainGameEnemyParameterManager>();
 
+    private void Start()
+    {
+        MainGameUmpire.Instance.SetMainGameEnemy = this;
+    }
     public void EnemyAttack()
     {
         // Playerのスクリプトにアクセスし、ダメージを与える
+        MainGameUmpire.Instance.GetMainGamePlayer.Damage(mainGameEnemyParameterManager.GetEnemyAttackPoint);
     }
 
     private void Update()
@@ -21,6 +26,8 @@ public class MainGameEnemy : MonoBehaviour
         if (mainGameEnemyTimer.AttackTime < 0)
         {
             EnemyAttack();
+
+            mainGameEnemyTimer.AttackTime = 3.0f;
         }
     }
 }
