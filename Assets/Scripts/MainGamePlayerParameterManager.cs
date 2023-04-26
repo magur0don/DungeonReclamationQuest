@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class MainGamePlayerParameterManager : MonoBehaviour
 {
-    public float HitPoint = 3f;
+    public float GetHitPoint
+    {
+        get { return hitPoint; }
+    }
+
+    public float SetHitPoint
+    {
+        set { hitPoint = value; }
+    }
+
+    private float hitPoint;
 
     public void Damage(int damagePoint)
     {
         if (damagePoint > 0)
         {
-            HitPoint -= damagePoint;
+            hitPoint -= damagePoint;
         }
     }
 }
