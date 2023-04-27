@@ -14,7 +14,11 @@ public class MainGameUIManager : MonoBehaviour
 
     private int playerHitPointCount;
 
-    private void Start()
+    public Image EnemyAttackGauge;
+
+    private List<Image> enemyAttackGauges = new List<Image>();
+
+    public void InitializeUI()
     {
         playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint;
 
@@ -23,19 +27,31 @@ public class MainGameUIManager : MonoBehaviour
             var playerHart = Instantiate(PlayerHeartImage, PlayerHeartRoot);
             playerHarts.Add(playerHart.gameObject);
         }
+        for (int i = 0; i < MainGameUmpire.Instance.GetMainGameEnemies.Count; i++)
+        {
+            var enemyGauge = Instantiate(EnemyAttackGauge.gameObject, this.transform);
+            enemyGauge.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, MainGameUmpire.Instance.GetMainGameEnemies[i].transform.position);
+            enemyAttackGauges.Add(enemyGauge.GetComponent<Image>());
+        }
     }
 
     private void Update()
     {
-        if (MainGameSceneStateManager.Instance.GameSceneStates < MainGameSceneStateManager.GameSceneState.Start)
+        if (MainGameSceneStateManager.Instance.GameSceneStates != MainGameSceneStateManager.GameSceneState.MainGame)
         {
             return;
+        }
+
+        for (int i = 0; i < MainGameUmpire.Instance.GetMainGameEnemies.Count; i++)
+        {
+            var normalizedValue = Mathf.InverseLerp(0f, 3f, MainGameUmpire.Instance.GetMainGameEnemies[i].GetEnemyAttackTime);
+            enemyAttackGauges[i].fillAmount = normalizedValue;
         }
 
         if (playerHitPointCount != (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint)
         {
             Debug.Log((int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint);
-            playerHarts[playerHitPointCount-1].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
+            playerHarts[playerHitPointCount - 1].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
             playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint;
         }
     }

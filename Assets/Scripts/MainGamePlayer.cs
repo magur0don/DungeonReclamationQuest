@@ -23,7 +23,6 @@ public class MainGamePlayer : MonoBehaviour
             mainGamePlayerParameterManager.SetHitPoint = currentHitPoint;
             if (currentHitPoint == 0)
             {
-                Debug.Log("ç°ÅI");
                 IsDead = true;
             }
         }

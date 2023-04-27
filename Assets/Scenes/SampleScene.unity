@@ -865,6 +865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHeartImage: {fileID: 2127306336782512506, guid: 263cad411f89cd24e8d5da664bbf1cd7, type: 3}
   PlayerHeartRoot: {fileID: 1789352429}
+  EnemyAttackGauge: {fileID: 4325633888389239592, guid: c03ddb5ab6c7a6042abf597e6f185db0, type: 3}
 --- !u!1 &1101423115
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +944,8 @@ MonoBehaviour:
   DungeonMaker: {fileID: 1101423118}
   UserControlLidMaker: {fileID: 310974525}
   AssetsLoad: {fileID: 822185896}
+  MainGameUIManager: {fileID: 918590887}
+  MainGameUmpire: {fileID: 0}
   GameSceneStates: 0
 --- !u!4 &1715856292
 Transform:

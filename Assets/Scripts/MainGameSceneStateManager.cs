@@ -7,7 +7,9 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
     public PolyominoDungeonMaker DungeonMaker;
     public PolyominoUserControlLidMaker UserControlLidMaker;
     public AssetsLoad AssetsLoad;
-    
+    public MainGameUIManager MainGameUIManager;
+    public MainGameUmpire MainGameUmpire;
+
     /// <summary>
     /// ゲームシーンのステート
     /// </summary>
@@ -15,6 +17,7 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
     {
         Invald,
         Init,
+        Ready,
         Start,
         MainGame,
         Result
@@ -37,15 +40,23 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 break;
 
             case GameSceneState.Init:
+                // リソースの読み込み
                 StartCoroutine(AssetsLoad.LoadDungeons());
-                GameSceneStates = GameSceneState.Start;
+                GameSceneStates = GameSceneState.Ready;
                 break;
-
-            case GameSceneState.Start:
+            case GameSceneState.Ready:
                 if (AssetsLoad.AssetLoaded)
                 {
                     DungeonMaker.DungeonMake();
                     UserControlLidMaker.UserControlDungeonLidMake();
+                    GameSceneStates = GameSceneState.Start;
+                }
+                break;
+            case GameSceneState.Start:
+                if (MainGameUmpire.IsReady)
+                {
+                    // UIを初期化する
+                    MainGameUIManager.InitializeUI();
                     GameSceneStates = GameSceneState.MainGame;
                 }
                 break;

@@ -14,14 +14,12 @@ public class Dungeons : MonoBehaviour
     private void Start()
     {
         var rand = Random.Range(0, this.transform.GetComponentsInChildren<Polyomino>().Count());
-        Debug.Log(rand);
         var count = 0;
         foreach (var polyomino in this.transform.GetComponentsInChildren<Polyomino>())
         {
             if (rand == count)
             {
                 Instantiate(MainGameEnemy.gameObject, polyomino.transform);
-                Debug.Log("‚±‚±‚«‚Ä‚éH");
             }
             count++;
             polyominos.Add(polyomino);
