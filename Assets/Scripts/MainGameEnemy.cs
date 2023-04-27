@@ -11,6 +11,8 @@ public class MainGameEnemy : MonoBehaviour
     private MainGameEnemyTimer mainGameEnemyTimer => GetComponent<MainGameEnemyTimer>();
     private MainGameEnemyParameterManager mainGameEnemyParameterManager => GetComponent<MainGameEnemyParameterManager>();
 
+    public Polyomino ParentPolyomino = null;
+
     public float GetEnemyAttackTime
     {
         get { return mainGameEnemyTimer.AttackTime; }
@@ -19,6 +21,7 @@ public class MainGameEnemy : MonoBehaviour
     private void Awake()
     {
         MainGameUmpire.Instance.SetMainGameEnemy = this;
+        ParentPolyomino = transform.parent.GetComponent<Polyomino>();
     }
 
     public void EnemyAttack()
@@ -29,6 +32,11 @@ public class MainGameEnemy : MonoBehaviour
 
     private void Update()
     {
+        if (ParentPolyomino.IsBuried)
+        {
+            this.gameObject.SetActive(false);
+        }
+
         if (mainGameEnemyTimer.AttackTime < 0)
         {
             EnemyAttack();

@@ -72,6 +72,22 @@ public class Polyomino : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+        // ダンジョン用のポリオミノじゃなかったらSortOrderを変更する
+        if (!IsDungeonPolyomino)
+        {
+            foreach (var mino in this.transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                mino.sortingOrder = 5;
+            }
+
+        }
+    }
+
+
+
     void OnMouseDown()
     {
         if (IsDungeonPolyomino)

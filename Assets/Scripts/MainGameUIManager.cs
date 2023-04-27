@@ -44,6 +44,15 @@ public class MainGameUIManager : MonoBehaviour
 
         for (int i = 0; i < MainGameUmpire.Instance.GetMainGameEnemies.Count; i++)
         {
+            // “G‚ª–„‚Ü‚Á‚½‚ç
+            if (!MainGameUmpire.Instance.GetMainGameEnemies[i].gameObject.activeSelf)
+            {
+                if (enemyAttackGauges[i].gameObject.activeSelf)
+                {
+                    enemyAttackGauges[i].gameObject.SetActive(false);
+                }
+                break;
+            }
             var normalizedValue = Mathf.InverseLerp(0f, 3f, MainGameUmpire.Instance.GetMainGameEnemies[i].GetEnemyAttackTime);
             enemyAttackGauges[i].fillAmount = normalizedValue;
         }
