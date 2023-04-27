@@ -9,18 +9,27 @@ public class MainGamePlayer : MonoBehaviour
 
     public bool IsDead = false;
 
+    public float MainGamePlayerGetHitPoint
+    {
+        get { return mainGamePlayerParameterManager.GetHitPoint; }
+    }
+
     public void Damage(float damagePoint)
     {
-        if (damagePoint > 0)
+        var currentHitPoint = mainGamePlayerParameterManager.GetHitPoint;
+        if (damagePoint > 0 && currentHitPoint > 0)
         {
-            var currentHitPoint = mainGamePlayerParameterManager.GetHitPoint;
-            Debug.Log(currentHitPoint);
             currentHitPoint -= damagePoint;
             mainGamePlayerParameterManager.SetHitPoint = currentHitPoint;
+            if (currentHitPoint == 0)
+            {
+                Debug.Log("ç°ÅI");
+                IsDead = true;
+            }
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         MainGameUmpire.Instance.SetMainGamePlayer = this;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
 {
-
+    [SerializeField]
     private MainGamePlayer mainGamePlayer;
     public MainGamePlayer SetMainGamePlayer
     {
@@ -29,5 +29,8 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
     {
         isSceneinSingleton = true;
     }
-
+    private void Update()
+    {
+        Debug.Log(mainGamePlayer);
+    }
 }

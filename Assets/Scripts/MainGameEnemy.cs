@@ -11,10 +11,11 @@ public class MainGameEnemy : MonoBehaviour
     private MainGameEnemyTimer mainGameEnemyTimer => GetComponent<MainGameEnemyTimer>();
     private MainGameEnemyParameterManager mainGameEnemyParameterManager => GetComponent<MainGameEnemyParameterManager>();
 
-    private void Start()
+    private void Awake()
     {
         MainGameUmpire.Instance.SetMainGameEnemy = this;
     }
+
     public void EnemyAttack()
     {
         // Playerのスクリプトにアクセスし、ダメージを与える

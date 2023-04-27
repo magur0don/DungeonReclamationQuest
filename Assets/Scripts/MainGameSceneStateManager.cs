@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainGameSceneStateManager : MonoBehaviour
+public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneStateManager>
 {
     public PolyominoDungeonMaker DungeonMaker;
     public PolyominoUserControlLidMaker UserControlLidMaker;
@@ -21,6 +21,11 @@ public class MainGameSceneStateManager : MonoBehaviour
     }
 
     public GameSceneState GameSceneStates;
+
+    private void Start()
+    {
+        isSceneinSingleton = true;
+    }
 
     // Update is called once per frame
     void Update()
