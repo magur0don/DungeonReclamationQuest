@@ -14,16 +14,17 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
         var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
 
         polyominoDungeons.GetComponent<Dungeons>().enabled = false;
+
+        polyominoDungeons.name = "UserControlLids";
         // SpriteÇÃê›íË
         foreach (var userControlPolyominoRenderer in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
         {
             userControlPolyominoRenderer.sprite = DungeonLidSprite;
             userControlPolyominoRenderer.sortingOrder = 1;
         }
-
         foreach (var userControlPolyomino in polyominoDungeons.GetComponentsInChildren<Polyomino>())
         {
-            userControlPolyomino.GetPolyominoCollider.size  *= 0.6f;
+            userControlPolyomino.GetPolyominoCollider.size *= 0.6f;
         }
     }
 }
