@@ -20,7 +20,7 @@ public class MainGameUIManager : MonoBehaviour
 
     public void InitializeUI()
     {
-        playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint;
+        playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
 
         for (int i = 0; i < playerHitPointCount; i++)
         {
@@ -57,11 +57,11 @@ public class MainGameUIManager : MonoBehaviour
             enemyAttackGauges[i].fillAmount = normalizedValue;
         }
 
-        if (playerHitPointCount != (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint)
+        if (playerHitPointCount != (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint)
         {
-            Debug.Log((int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint);
+            Debug.Log((int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint);
             playerHarts[playerHitPointCount - 1].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
-            playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.MainGamePlayerGetHitPoint;
+            playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
         }
     }
 

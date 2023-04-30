@@ -9,7 +9,7 @@ public class MainGamePlayer : MonoBehaviour
 
     public bool IsDead = false;
 
-    public float MainGamePlayerGetHitPoint
+    public float PlayerGetHitPoint
     {
         get { return mainGamePlayerParameterManager.GetHitPoint; }
     }
