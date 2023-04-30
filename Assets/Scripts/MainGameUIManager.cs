@@ -35,7 +35,8 @@ public class MainGameUIManager : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    private void LateUpdate()
     {
         if (MainGameSceneStateManager.Instance.GameSceneStates != MainGameSceneStateManager.GameSceneState.MainGame)
         {
@@ -51,16 +52,28 @@ public class MainGameUIManager : MonoBehaviour
                 {
                     enemyAttackGauges[i].gameObject.SetActive(false);
                 }
-                break;
             }
-            var normalizedValue = Mathf.InverseLerp(0f, 3f, MainGameUmpire.Instance.GetMainGameEnemies[i].GetEnemyAttackTime);
-            enemyAttackGauges[i].fillAmount = normalizedValue;
-        }
 
+            if (enemyAttackGauges[i].gameObject.activeSelf)
+            {
+                var normalizedValue = Mathf.InverseLerp(0f, 3f, MainGameUmpire.Instance.GetMainGameEnemies[i].GetEnemyAttackTime);
+                enemyAttackGauges[i].fillAmount = normalizedValue;
+            }
+        }
+        // HitPoint5Ç≈DamageÇÇ≠ÇÁÇ¡ÇΩå„ÇÃPlayerHPÇÃ3Ç™óàÇΩèÍçá
         if (playerHitPointCount != (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint)
         {
-            Debug.Log((int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint);
-            playerHarts[playerHitPointCount - 1].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
+            // 2Ç™ì¸ÇÈ
+            var countDiff = playerHitPointCount - (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
+            var count = 0;
+            for (int i = 0; i < countDiff; i++)
+            {
+                count++;
+                if (playerHarts[playerHitPointCount - count] != null)
+                {
+                    playerHarts[playerHitPointCount - count].GetComponent<MainGamePlayerHeart>().DamageChangeHeartIcon();
+                }
+            }
             playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
         }
     }
