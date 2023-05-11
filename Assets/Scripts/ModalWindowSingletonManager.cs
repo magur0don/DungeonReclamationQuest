@@ -59,11 +59,7 @@ public class ModalWindowSingletonManager : SingletonMonoBehaviour<ModalWindowSin
         IsShowBackGround(isShowBackGround);
         IsShowLoadingImage(isShowLoadingImage);
         yield return new WaitUntil(() => IsModalActive);
-
-        // Šm”F‚Ì‚½‚ß1•b‘Ò‚Â
-        // Todo:Œã‚ÅÁ‚·
-        yield return new WaitForSeconds(1f);
-
+        yield return new WaitUntil(() => !IsModalActive);
         // Modal‚ð”ñ•\Ž¦‚Æ‚·‚é
         IsShowBackGround(false);
         IsShowLoadingImage(false);
