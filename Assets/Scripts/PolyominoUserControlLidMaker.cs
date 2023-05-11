@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PolyominoUserControlLidMaker : MonoBehaviour
 {
-    public AssetsLoad AssetsLoad;
     public Sprite DungeonLidSprite;
 
     /// <summary>
@@ -11,7 +10,7 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
     /// </summary>
     public void UserControlDungeonLidMake()
     {
-        var polyominoDungeons = Instantiate(AssetsLoad.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
+        var polyominoDungeons = Instantiate(AssetsLoad.Instance.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
 
         polyominoDungeons.GetComponent<Dungeons>().enabled = false;
 

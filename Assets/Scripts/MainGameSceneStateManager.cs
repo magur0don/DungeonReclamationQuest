@@ -6,7 +6,6 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
 {
     public PolyominoDungeonMaker DungeonMaker;
     public PolyominoUserControlLidMaker UserControlLidMaker;
-    public AssetsLoad AssetsLoad;
     public MainGameUIManager MainGameUIManager;
     public MainGameUmpire MainGameUmpire;
 
@@ -25,9 +24,10 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
 
     public GameSceneState GameSceneStates;
 
-    private void Start()
+    public override void Awake()
     {
         isSceneinSingleton = true;
+        base.Awake();
     }
 
     // Update is called once per frame
@@ -40,17 +40,23 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 break;
 
             case GameSceneState.Init:
-                // リソースの読み込み
-                StartCoroutine(AssetsLoad.LoadDungeons());
 
-                // リソース待ちのモーダルを表示する
-                StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
+                // 最初にモーダル自体を閉じておく
+                ModalWindowSingletonManager.Instance.CloseModal();
+
+                // リソースの読み込み
+                if (AssetsLoad.Instance.AssetLoaded == false)
+                {
+                    StartCoroutine(AssetsLoad.Instance.LoadDungeons());
+                    // リソース待ちのモーダルを表示する
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
+                }
 
                 GameSceneStates = GameSceneState.Ready;
                 break;
             case GameSceneState.Ready:
 
-                if (AssetsLoad.AssetLoaded)
+                if (AssetsLoad.Instance.AssetLoaded)
                 {
                     DungeonMaker.DungeonMake();
                     UserControlLidMaker.UserControlDungeonLidMake();

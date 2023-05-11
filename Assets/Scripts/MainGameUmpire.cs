@@ -29,10 +29,14 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
 
     public bool IsReady = false;
 
+    public override void Awake()
+    {
+        isSceneinSingleton = true;
+        base.Awake();
+    }
 
     private void Start()
     {
-        isSceneinSingleton = true;
         MainGameSceneStateManager.Instance.MainGameUmpire = this;
     }
 

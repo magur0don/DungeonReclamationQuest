@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class AssetsLoad : MonoBehaviour
+public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
 {
     public List<string> keys = new List<string>();
     AsyncOperationHandle<IList<GameObject>> opHandle;
@@ -44,6 +44,8 @@ public class AssetsLoad : MonoBehaviour
 
     void OnDestroy()
     {
-        Addressables.Release(opHandle);
+        if (opHandle.IsValid()) {
+            Addressables.Release(opHandle);
+    }
     }
 }

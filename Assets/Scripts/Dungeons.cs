@@ -14,7 +14,7 @@ public class Dungeons : MonoBehaviour
     private void Start()
     {
         var polyominoCount = this.transform.GetComponentsInChildren<Polyomino>().Count();
-        var enemyCount = Random.Range(0, polyominoCount);
+        var enemyCount = Random.Range(1, polyominoCount);
         
         foreach (var polyomino in this.transform.GetComponentsInChildren<Polyomino>())
         {
