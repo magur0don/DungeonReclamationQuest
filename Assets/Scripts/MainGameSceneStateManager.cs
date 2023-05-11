@@ -10,6 +10,7 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
     public MainGameUIManager MainGameUIManager;
     public MainGameUmpire MainGameUmpire;
 
+
     /// <summary>
     /// ゲームシーンのステート
     /// </summary>
@@ -67,13 +68,15 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 }
                 break;
             case GameSceneState.MainGame:
-
+                if (MainGameUmpire.Instance.GetMainGamePlayer.IsDead)
+                {
+                    Debug.Log("ゲームオーバー");
+                    GameSceneStates = GameSceneState.Result;
+                }
                 break;
             case GameSceneState.Result:
 
                 break;
-
-
         }
     }
 }

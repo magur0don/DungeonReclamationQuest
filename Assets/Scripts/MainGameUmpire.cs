@@ -29,6 +29,7 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
 
     public bool IsReady = false;
 
+
     private void Start()
     {
         isSceneinSingleton = true;
@@ -37,12 +38,14 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
 
     private void Update()
     {
+
+
         if (IsReady)
         {
             return;
         }
 
-        if (GetMainGamePlayer != null && mainGameEnemies.Count > 0)
+        if (IsReady == false && GetMainGamePlayer != null && mainGameEnemies.Count > 0)
         {
             IsReady = true;
         }

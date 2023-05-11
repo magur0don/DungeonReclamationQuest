@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 // タイマーとパラメーターは必須とする
@@ -32,6 +33,12 @@ public class MainGameEnemy : MonoBehaviour
 
     private void Update()
     {
+        // MainGameじゃない場合は帰る
+        if (MainGameSceneStateManager.Instance.GameSceneStates != MainGameSceneStateManager.GameSceneState.MainGame) 
+        {
+            return;
+        }
+
         if (ParentPolyomino.IsBuried)
         {
             this.gameObject.SetActive(false);
