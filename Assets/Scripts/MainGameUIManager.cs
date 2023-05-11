@@ -18,6 +18,14 @@ public class MainGameUIManager : MonoBehaviour
 
     private List<Image> enemyAttackGauges = new List<Image>();
 
+    /// <summary>
+    /// ゲームオーバー用のUI
+    /// </summary>
+    [SerializeField]
+    private GameObject gameOverModal;
+
+    private GameObject gameOverModalInstance = null;
+
     public void InitializeUI()
     {
         playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
@@ -35,6 +43,22 @@ public class MainGameUIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ゲームオバー用のモーダルを表示する
+    /// </summary>
+    public void ShowGameOverModal(Transform modalCanvas)
+    {
+        if (gameOverModal != null && gameOverModalInstance == null)
+        {
+            gameOverModalInstance = Instantiate(gameOverModal, modalCanvas);
+            gameOverModalInstance.SetActive(true);
+        }
+
+        if (gameOverModalInstance = null)
+        {
+            gameOverModalInstance.SetActive(true);
+        }
+    }
 
     private void LateUpdate()
     {

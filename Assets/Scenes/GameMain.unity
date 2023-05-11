@@ -866,6 +866,7 @@ MonoBehaviour:
   PlayerHeartImage: {fileID: 2127306336782512506, guid: 263cad411f89cd24e8d5da664bbf1cd7, type: 3}
   PlayerHeartRoot: {fileID: 1789352429}
   EnemyAttackGauge: {fileID: 4325633888389239592, guid: c03ddb5ab6c7a6042abf597e6f185db0, type: 3}
+  gameOverModal: {fileID: 7992186806004414194, guid: cb107a927d12d8b438b6695d33ecaa80, type: 3}
 --- !u!1 &1101423115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1078,10 @@ PrefabInstance:
     - target: {fileID: 2515797732523287773, guid: d944064a29680214fa70348faa41d1a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515797732523287774, guid: d944064a29680214fa70348faa41d1a7, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8914427913243625099, guid: d944064a29680214fa70348faa41d1a7, type: 3}
       propertyPath: m_IsActive

@@ -10,7 +10,6 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
     public MainGameUIManager MainGameUIManager;
     public MainGameUmpire MainGameUmpire;
 
-
     /// <summary>
     /// ゲームシーンのステート
     /// </summary>
@@ -70,7 +69,8 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
             case GameSceneState.MainGame:
                 if (MainGameUmpire.Instance.GetMainGamePlayer.IsDead)
                 {
-                    Debug.Log("ゲームオーバー");
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal(isShowLoadingImage: false));
+                    MainGameUIManager.ShowGameOverModal(ModalWindowSingletonManager.Instance.transform);
                     GameSceneStates = GameSceneState.Result;
                 }
                 break;
