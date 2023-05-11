@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f110641e1cf0fc64b9bf0dcecaa71185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssetsLoad: {fileID: 822185896}
   DungeonLidSprite: {fileID: 21300000, guid: 9af611c6d8b75404ba1ada375856286a, type: 3}
 --- !u!1 &481948862
 GameObject:
@@ -867,6 +866,7 @@ MonoBehaviour:
   PlayerHeartRoot: {fileID: 1789352429}
   EnemyAttackGauge: {fileID: 4325633888389239592, guid: c03ddb5ab6c7a6042abf597e6f185db0, type: 3}
   gameOverModal: {fileID: 7992186806004414194, guid: cb107a927d12d8b438b6695d33ecaa80, type: 3}
+  gameClearModal: {fileID: 7992186806004414194, guid: 9e41a342a3f8e12488a31e75ad4efab2, type: 3}
 --- !u!1 &1101423115
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30ad1415fb34e046889c50de8b001bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssetsLoad: {fileID: 822185896}
   DungeonHoleSprite: {fileID: 21300000, guid: 4314f9eb02c0b76469061f95ce0f12e7, type: 3}
 --- !u!1 &1317923845 stripped
 GameObject:
@@ -949,9 +948,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DungeonMaker: {fileID: 1101423118}
   UserControlLidMaker: {fileID: 310974525}
-  AssetsLoad: {fileID: 822185896}
   MainGameUIManager: {fileID: 918590887}
   MainGameUmpire: {fileID: 0}
+  Dungeons: {fileID: 0}
   GameSceneStates: 0
 --- !u!4 &1715856292
 Transform:

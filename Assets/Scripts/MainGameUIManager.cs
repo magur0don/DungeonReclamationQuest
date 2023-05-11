@@ -26,8 +26,30 @@ public class MainGameUIManager : MonoBehaviour
 
     private GameObject gameOverModalInstance = null;
 
+    /// <summary>
+    /// ゲームクリア用のUI
+    /// </summary>
+    [SerializeField]
+    private GameObject gameClearModal;
+
+    private GameObject gameClearModalInstance = null;
+
+
+
+
     public void InitializeUI()
     {
+        playerHarts.Clear();
+        enemyAttackGauges.Clear();
+        // すでに生まれている場合は削除
+        if (PlayerHeartRoot.childCount > 0)
+        {
+            for (int i = 0; i < PlayerHeartRoot.childCount; i++)
+            {
+               Destroy(PlayerHeartRoot.GetChild(i).gameObject);
+            }
+        }
+
         playerHitPointCount = (int)MainGameUmpire.Instance.GetMainGamePlayer.PlayerGetHitPoint;
 
         for (int i = 0; i < playerHitPointCount; i++)
@@ -57,6 +79,23 @@ public class MainGameUIManager : MonoBehaviour
         if (gameOverModalInstance = null)
         {
             gameOverModalInstance.SetActive(true);
+        }
+    }
+
+
+    /// <summary>
+    /// ゲームクリア用のモーダルを表示する
+    /// </summary>
+    public void ShowGameClearModal(Transform modalCanvas)
+    {
+        if (gameClearModal != null && gameClearModalInstance == null)
+        {
+            gameClearModalInstance = Instantiate(gameClearModal, modalCanvas);
+            gameClearModalInstance.SetActive(true);
+        }
+        if (gameClearModalInstance = null)
+        {
+            gameClearModalInstance.SetActive(true);
         }
     }
 

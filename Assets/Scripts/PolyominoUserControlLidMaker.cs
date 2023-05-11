@@ -10,6 +10,11 @@ public class PolyominoUserControlLidMaker : MonoBehaviour
     /// </summary>
     public void UserControlDungeonLidMake()
     {
+        // ‚à‚µ‚Ù‚·‚Å‚Éƒ_ƒ“ƒWƒ‡ƒ“‚ª‚ ‚éê‡‚Í”jŠü‚·‚é
+        if (transform.childCount > 0 && transform.GetChild(0) != null)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
         var polyominoDungeons = Instantiate(AssetsLoad.Instance.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
 
         polyominoDungeons.GetComponent<Dungeons>().enabled = false;

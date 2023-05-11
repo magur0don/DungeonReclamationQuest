@@ -16,4 +16,20 @@ public class MainGamePlayerParameterManager : MonoBehaviour
 
     private float hitPoint = 5;
 
+    private float maxHitPoint;
+
+    public void AddBonusHitPoint() {
+
+        maxHitPoint++;
+        hitPoint = maxHitPoint;
+    }
+
+    public void ResumeHitPoint() { 
+    
+    }
+
+    private void Start()
+    {
+        maxHitPoint = hitPoint;
+    }
 }

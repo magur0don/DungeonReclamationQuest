@@ -9,6 +9,8 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
     public MainGameUIManager MainGameUIManager;
     public MainGameUmpire MainGameUmpire;
 
+    public Dungeons Dungeons;
+
     /// <summary>
     /// ゲームシーンのステート
     /// </summary>
@@ -43,7 +45,8 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
 
                 // 最初にモーダル自体を閉じておく
                 ModalWindowSingletonManager.Instance.CloseModal();
-
+                MainGameUmpire.Instance.IsReady = false;
+                MainGameUmpire.Instance.GetMainGameEnemies.Clear();
                 // リソースの読み込み
                 if (AssetsLoad.Instance.AssetLoaded == false)
                 {
@@ -79,6 +82,12 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                     MainGameUIManager.ShowGameOverModal(ModalWindowSingletonManager.Instance.transform);
                     GameSceneStates = GameSceneState.Result;
                 }
+                if (Dungeons.IsBulied) {
+                    StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal(isShowLoadingImage: false));
+                    MainGameUIManager.ShowGameClearModal(ModalWindowSingletonManager.Instance.transform);
+                    GameSceneStates = GameSceneState.Result;
+                }
+
                 break;
             case GameSceneState.Result:
 

@@ -32,10 +32,16 @@ public class ModalBase : MonoBehaviour
         {
             primaryButton.onClick.AddListener(() => primaryAction.Invoke());
         }
+        if (secondaryAction == null)
+        {
+            secondaryButton.gameObject.SetActive(false);
+        }
+
         if (secondaryButton != null && secondaryAction != null)
         {
             secondaryButton.onClick.AddListener(() => secondaryAction.Invoke());
         }
+
     }
 
 }

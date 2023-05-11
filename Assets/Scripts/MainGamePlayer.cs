@@ -14,6 +14,15 @@ public class MainGamePlayer : MonoBehaviour
         get { return mainGamePlayerParameterManager.GetHitPoint; }
     }
 
+    /// <summary>
+    /// クリアしたボーナスでHPを増やす
+    /// </summary>
+    public void ClearBonus()
+    {
+        mainGamePlayerParameterManager.AddBonusHitPoint();
+    }
+
+
     public void Damage(float damagePoint)
     {
         var currentHitPoint = mainGamePlayerParameterManager.GetHitPoint;

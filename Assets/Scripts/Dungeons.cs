@@ -13,6 +13,8 @@ public class Dungeons : MonoBehaviour
 
     private void Start()
     {
+        MainGameSceneStateManager.Instance.Dungeons = this;
+
         var polyominoCount = this.transform.GetComponentsInChildren<Polyomino>().Count();
         var enemyCount = Random.Range(1, polyominoCount);
         

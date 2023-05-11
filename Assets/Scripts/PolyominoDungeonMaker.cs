@@ -10,6 +10,11 @@ public class PolyominoDungeonMaker : MonoBehaviour
     /// </summary>
     public void DungeonMake()
     {
+        // ‚à‚µ‚Ù‚·‚Å‚Éƒ_ƒ“ƒWƒ‡ƒ“‚ª‚ ‚éê‡‚Í”jŠü‚·‚é
+        if (transform.childCount > 0 && transform.GetChild(0) != null)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
         Debug.Log(MainGameSceneConfigManager.Instance.Level);
         var polyominoDungeons = Instantiate(AssetsLoad.Instance.LoadedDungeons[MainGameSceneConfigManager.Instance.Level - 1], transform);
         foreach (var dungeonHole in polyominoDungeons.GetComponentsInChildren<SpriteRenderer>())
@@ -25,4 +30,5 @@ public class PolyominoDungeonMaker : MonoBehaviour
             dungeonPolyomino.IsDungeonPolyomino = true;
         }
     }
+
 }

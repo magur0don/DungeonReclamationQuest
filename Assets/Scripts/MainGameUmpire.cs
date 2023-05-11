@@ -42,8 +42,6 @@ public class MainGameUmpire : SingletonMonoBehaviour<MainGameUmpire>
 
     private void Update()
     {
-
-
         if (IsReady)
         {
             return;
