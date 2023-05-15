@@ -10,7 +10,13 @@ public class GameClearModal : ModalBase
     private void Start()
     {
         GameClearText.text = "GameClear!";
-        ButtonModalInitialize(GameClearTransition);
+        var nextStageButton = new ButtonAction
+        {
+            ButtonText = "ŽŸ‚Ö",
+            Action = GameClearTransition
+        };
+
+        ButtonModalInitialize(nextStageButton);
     }
 
     public void GameClearTransition()
@@ -18,8 +24,6 @@ public class GameClearModal : ModalBase
         MainGameSceneConfigManager.Instance.Level++;
         MainGameUmpire.Instance.GetMainGamePlayer.ClearBonus();
         MainGameSceneStateManager.Instance.GameSceneStates = MainGameSceneStateManager.GameSceneState.Init;
-
-
         this.gameObject.SetActive(false);
     }
 }

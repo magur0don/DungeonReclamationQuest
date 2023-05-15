@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,6 +18,12 @@ public class ModalBase : MonoBehaviour
     [SerializeField]
     private Button secondaryButton;
 
+    public class ButtonAction
+    {
+        public UnityAction Action = null;
+        public string ButtonText = string.Empty;
+    }
+
     public virtual void ShowButtonModal()
     {
         this.gameObject.SetActive(true);
@@ -26,20 +33,26 @@ public class ModalBase : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public virtual void ButtonModalInitialize(UnityAction primaryAction, UnityAction secondaryAction = null)
+    public virtual void ButtonModalInitialize(ButtonAction primaryButtonAction, ButtonAction secondaryButtonAction = null)
     {
+        primaryButton.onClick.RemoveAllListeners();
+        secondaryButton.onClick.RemoveAllListeners();
+
         if (primaryButton != null)
         {
-            primaryButton.onClick.AddListener(() => primaryAction.Invoke());
+            primaryButton.onClick.AddListener(() => primaryButtonAction.Action.Invoke());
+            primaryButton.GetComponentInChildren<TextMeshProUGUI>().text = primaryButtonAction.ButtonText;
         }
-        if (secondaryAction == null)
+
+        if (secondaryButtonAction == null)
         {
             secondaryButton.gameObject.SetActive(false);
         }
 
-        if (secondaryButton != null && secondaryAction != null)
+        if (secondaryButton != null && secondaryButtonAction != null)
         {
-            secondaryButton.onClick.AddListener(() => secondaryAction.Invoke());
+            secondaryButton.onClick.AddListener(() => secondaryButtonAction.Action.Invoke());
+            secondaryButton.GetComponentInChildren<TextMeshProUGUI>().text = secondaryButtonAction.ButtonText;
         }
 
     }

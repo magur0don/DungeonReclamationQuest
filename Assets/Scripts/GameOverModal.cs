@@ -10,12 +10,32 @@ public class GameOverModal : ModalBase
     private void Start()
     {
         GameOverText.text = "GameOver...";
-        ButtonModalInitialize(GameOverTransition);
+
+        var returnStartSceneButton = new ButtonAction
+        {
+            ButtonText = "スタートへ",
+            Action = GameOverTransition
+        };
+
+        var reStartButton = new ButtonAction
+        {
+            ButtonText = "続ける",
+            Action = NextGameOverTransition
+        };
+
+        ButtonModalInitialize(returnStartSceneButton, reStartButton);
     }
 
     public void GameOverTransition()
     {
+        MainGameSceneConfigManager.Instance.Level = 1;
         DungeonReclamationSceneManager.Instance.SceneTransition(DungeonReclamationSceneManager.GameStartSceneName);
+        this.gameObject.SetActive(false);
+    }
+
+    public void NextGameOverTransition()
+    {
+        DungeonReclamationSceneManager.Instance.SceneTransition(DungeonReclamationSceneManager.GameMainSceneName);
         this.gameObject.SetActive(false);
     }
 }
