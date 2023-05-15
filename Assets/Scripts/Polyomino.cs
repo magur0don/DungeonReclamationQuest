@@ -122,14 +122,15 @@ public class Polyomino : MonoBehaviour
             var poly = collision.GetComponent<Polyomino>();
             if (!poly.IsDragging && !poly.IsDungeonPolyomino)
             {
-              
+
                 bool isFullyInside = this.polyominoCollider.bounds.Contains(poly.polyominoCollider.bounds.min) &&
                        this.polyominoCollider.bounds.Contains(poly.polyominoCollider.bounds.max);
                 // ‚¿‚á‚ñ‚Æ–„‚Ü‚Á‚Ä‚¢‚é‚©‚ðŠm”F‚·‚é
-                if (isFullyInside &&poly.PolyominoType == this.PolyominoType)
+                if (isFullyInside && poly.PolyominoType == this.PolyominoType)
                 {
                     poly.transform.position = this.transform.localPosition;
                     IsBuried = true;
+                    poly.GetComponent<BoxCollider2D>().enabled = false;
                 }
             }
         }
@@ -139,7 +140,7 @@ public class Polyomino : MonoBehaviour
         if (collision.GetComponent<Polyomino>())
         {
             var poly = collision.GetComponent<Polyomino>();
-            if (!poly.IsDungeonPolyomino)
+            if (!poly.IsDungeonPolyomino && !IsBuried && poly.PolyominoType != this.PolyominoType)
             {
                 IsBuried = false;
             }
