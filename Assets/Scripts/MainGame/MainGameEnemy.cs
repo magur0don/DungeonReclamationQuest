@@ -39,9 +39,10 @@ public class MainGameEnemy : MonoBehaviour
             return;
         }
 
-        if (ParentPolyomino.IsBuried)
+        if (ParentPolyomino.IsBuried && this.gameObject.activeSelf)
         {
             this.gameObject.SetActive(false);
+            ParticleManager.Instance.LidEffectPlay(ParticleManager.MainGameParticlesType.LidEffect, this.transform.position);
         }
 
         if (mainGameEnemyTimer.AttackTime < 0)

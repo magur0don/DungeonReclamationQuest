@@ -11,11 +11,12 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
 {
     public List<string> keys = new List<string>();
     AsyncOperationHandle<IList<GameObject>> opHandle;
-
     AsyncOperationHandle<IList<AudioClip>> soundHandle;
+    AsyncOperationHandle<IList<GameObject>> particleHandle;
+
     public string Labels;
 
-    public List<GameObject> LoadedDungeons=new List<GameObject>();
+    public List<GameObject> LoadedDungeons = new List<GameObject>();
 
     public bool AssetLoaded = false;
 
@@ -23,7 +24,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
     {
         AssetLoaded = false;
         opHandle = Addressables.LoadAssetsAsync<GameObject>
-            ("Dungeons",null);
+            ("Dungeons", null);
         yield return opHandle;
 
         if (opHandle.Status == AsyncOperationStatus.Succeeded)
@@ -47,7 +48,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
         };
         soundHandle = Addressables.LoadAssetsAsync<AudioClip>
             (soundLabels,
-                null,Addressables.MergeMode.Union
+                null, Addressables.MergeMode.Union
             );
 
         yield return soundHandle;
@@ -70,6 +71,23 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
         }
     }
 
+    public IEnumerator LoadParticles(UnityAction act = null)
+    {
+        AssetLoaded = false;
+
+        particleHandle = Addressables.LoadAssetsAsync<GameObject>("Particle", null);
+
+        yield return particleHandle;
+
+        var mainGameParticleLoadHandle = Addressables.LoadAssetsAsync<GameObject>("Particle", null);
+        yield return mainGameParticleLoadHandle;
+        ParticleManager.Instance.SetMainGameParticles(mainGameParticleLoadHandle.Result.ToList());
+        if (particleHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            AssetLoaded = true;
+            act?.Invoke();
+        }
+    }
 
     void OnDestroy()
     {
@@ -80,6 +98,10 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
         if (soundHandle.IsValid())
         {
             Addressables.Release(soundHandle);
+        }
+        if (particleHandle.IsValid())
+        {
+            Addressables.Release(particleHandle);
         }
     }
 }
