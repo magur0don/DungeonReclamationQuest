@@ -1,16 +1,18 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Linq;
+using UnityEngine.Events;
 
 public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
 {
     public List<string> keys = new List<string>();
     AsyncOperationHandle<IList<GameObject>> opHandle;
 
+    AsyncOperationHandle<IList<AudioClip>> soundHandle;
     public string Labels;
 
     public List<GameObject> LoadedDungeons;
@@ -42,10 +44,49 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
         }
     }
 
+
+    public IEnumerator LoadSounds(UnityAction act = null)
+    {
+        IEnumerable soundLabels = new object[] {
+            "BGM",
+            "UISE",
+            "MainGameSE"
+        };
+        soundHandle = Addressables.LoadAssetsAsync<AudioClip>
+            (soundLabels,
+                null,Addressables.MergeMode.Union
+            );
+
+        yield return soundHandle;
+
+        var bgmLoadHandle = Addressables.LoadAssetsAsync<AudioClip>("BGM", null);
+        yield return bgmLoadHandle;
+        SoundManager.Instance.SetBGMClips(bgmLoadHandle.Result.ToArray());
+        var uiSELoadHandle = Addressables.LoadAssetsAsync<AudioClip>("UISE", null);
+        yield return uiSELoadHandle;
+        SoundManager.Instance.SetUISEClips(uiSELoadHandle.Result.ToArray());
+
+        var mainGameSeLoadHandle = Addressables.LoadAssetsAsync<AudioClip>("MainGameSE", null);
+        yield return mainGameSeLoadHandle;
+        SoundManager.Instance.SetMainGameSEClips(mainGameSeLoadHandle.Result.ToArray());
+
+        if (soundHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            AssetLoaded = true;
+            act?.Invoke();
+        }
+    }
+
+
     void OnDestroy()
     {
-        if (opHandle.IsValid()) {
+        if (opHandle.IsValid())
+        {
             Addressables.Release(opHandle);
-    }
+        }
+        if (soundHandle.IsValid())
+        {
+            Addressables.Release(soundHandle);
+        }
     }
 }

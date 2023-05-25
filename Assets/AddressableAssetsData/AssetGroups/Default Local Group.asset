@@ -55,6 +55,28 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dugenons
     - Dungeons
+  - m_GUID: 26364aaf1f64b40c1a047b0bacfbd10e
+    m_Address: StreetLove
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BGM
+  - m_GUID: 07f391589664f4e85904fa28802b4aa8
+    m_Address: Zephyr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BGM
+  - m_GUID: 566d2ea6240b489479a6e9fd608c2621
+    m_Address: 69_Enemy_death_01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SE
+    - MainGameSE
+  - m_GUID: c5cb2ac29e89dbf43a9b644caaad45e6
+    m_Address: 013_Confirm_03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SE
+    - UISE
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5fba80a44bd11d0418342ecb4471ed65, type: 2}
   m_SchemaSet:
