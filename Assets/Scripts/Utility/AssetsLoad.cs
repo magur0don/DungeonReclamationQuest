@@ -15,14 +15,15 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
     AsyncOperationHandle<IList<AudioClip>> soundHandle;
     public string Labels;
 
-    public List<GameObject> LoadedDungeons;
+    public List<GameObject> LoadedDungeons=new List<GameObject>();
 
     public bool AssetLoaded = false;
 
     public IEnumerator LoadDungeons()
     {
+        AssetLoaded = false;
         opHandle = Addressables.LoadAssetsAsync<GameObject>
-            (Labels,
+            ("Dungeons",
                 //obj =>
                 //{
                 //    //Gets called for every loaded asset
@@ -47,6 +48,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
 
     public IEnumerator LoadSounds(UnityAction act = null)
     {
+        AssetLoaded = false;
         IEnumerable soundLabels = new object[] {
             "BGM",
             "UISE",

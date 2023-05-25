@@ -48,10 +48,11 @@ public class MainGameSceneStateManager : SingletonMonoBehaviour<MainGameSceneSta
                 MainGameUmpire.Instance.IsReady = false;
                 MainGameUmpire.Instance.GetMainGameEnemies.Clear();
                 // リソースの読み込み
-                if (AssetsLoad.Instance.AssetLoaded == false)
+                if (AssetsLoad.Instance.AssetLoaded == false ||AssetsLoad.Instance.LoadedDungeons.Count==0 )
                 {
                     StartCoroutine(AssetsLoad.Instance.LoadDungeons());
                     // リソース待ちのモーダルを表示する
+                    Debug.Log("kokonikitenai?");
                     StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
                 }
 
