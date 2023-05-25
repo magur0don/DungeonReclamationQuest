@@ -84,12 +84,12 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         if (!audioSources[(int)SoundType.PrimarySE].isPlaying)
         {
 
-            audioSources[(int)SoundType.PrimarySE].PlayOneShot(mainGameSEClips[(int)SEType]);
+            audioSources[(int)SoundType.PrimarySE].PlayOneShot(uiSEClips[(int)SEType]);
         }
         else
         {
 
-            audioSources[(int)SoundType.SecondarySE].PlayOneShot(mainGameSEClips[(int)SEType]);
+            audioSources[(int)SoundType.SecondarySE].PlayOneShot(uiSEClips[(int)SEType]);
         }
     }
 

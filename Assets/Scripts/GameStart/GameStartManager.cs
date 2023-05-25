@@ -16,7 +16,8 @@ public class GameStartManager : MonoBehaviour
         {
             // リソース待ちのモーダルを表示する
             StartCoroutine(ModalWindowSingletonManager.Instance.ShowModal());
-            StartCoroutine(AssetsLoad.Instance.LoadSounds(() => {
+            StartCoroutine(AssetsLoad.Instance.LoadSounds(() =>
+            {
                 SoundManager.Instance.PlayBGM(SoundManager.BGMType.StartGameBGM);
             }));
         }
@@ -29,7 +30,9 @@ public class GameStartManager : MonoBehaviour
             // スタートボタンを押すとMainGameに移行する命令をセットする
             tapStartButton.onClick.AddListener(() =>
             {
+                SoundManager.Instance.PlayUISE(SoundManager.UISEType.Confirm);
                 DungeonReclamationSceneManager.Instance.SceneTransition(DungeonReclamationSceneManager.GameMainSceneName);
+
             });
         }
     }
