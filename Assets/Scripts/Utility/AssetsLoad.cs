@@ -23,16 +23,7 @@ public class AssetsLoad : SingletonMonoBehaviour<AssetsLoad>
     {
         AssetLoaded = false;
         opHandle = Addressables.LoadAssetsAsync<GameObject>
-            ("Dungeons",
-                //obj =>
-                //{
-                //    //Gets called for every loaded asset
-                //    Debug.Log(obj.name);
-                //},
-                //Addressables.MergeMode.Union
-                null
-            );
-
+            ("Dungeons",null);
         yield return opHandle;
 
         if (opHandle.Status == AsyncOperationStatus.Succeeded)
